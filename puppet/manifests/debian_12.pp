@@ -18,7 +18,8 @@ class debian_12 {
   # Configuration de l'utilisateur administrateur
   user { 'admin':
     ensure   => present,
-    password => '$6$randomsalt$hashedpassword',
+    # hach du mot de passe (P@ssw0rd) avec SHA-512
+    password => '$6$randomsalt$gRyjVZeF5LHbXLKdrDmEkLyAHK3Bn4aftU4xZtVS4Fs/TXDO4ZD2U5D.0PkTt4ZXVP48b8VlUIksMN.pg7u3c.',
   }
 }
 
