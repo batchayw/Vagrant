@@ -1,0 +1,41 @@
+# Workflow GitHub Actions pour le pipeline CI/CD
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Linting
+        run: ./scripts/lint.sh
+
+  provision:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Provision VMs
+        run: vagrant up
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Functionality Tests
+        run: ./scripts/test_functionality.sh
+      - name: Run Security Tests
+        run: ./scripts/test_security.sh
+
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Send Notification
+        run: ./ci-cd/notifications/gmail_notification.sh
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
