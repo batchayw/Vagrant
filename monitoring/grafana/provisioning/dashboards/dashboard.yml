@@ -1,0 +1,10 @@
+# Configuration des tableaux de bord Grafana
+apiVersion: 1
+
+providers:
+  - name: 'VM Monitoring'
+    orgId: 1
+    folder: ''
+    type: file
+    options:
+      path: /etc/grafana/provisioning/dashboards
