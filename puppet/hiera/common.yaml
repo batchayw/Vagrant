@@ -1,0 +1,11 @@
+# Configuration commune pour toutes les VMs
+common::ntp_servers:
+  - 0.pool.ntp.org
+  - 1.pool.ntp.org
+  - 2.pool.ntp.org
+
+security::ssh_port: 22
+security::disable_root_login: true
+
+monitoring::prometheus_node_exporter_port: 9100
+monitoring::fluentd_port: 24224
