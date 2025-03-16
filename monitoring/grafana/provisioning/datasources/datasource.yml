@@ -1,0 +1,8 @@
+# Configuration des sources de données Grafana
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://localhost:9090
