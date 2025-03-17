@@ -4,7 +4,6 @@ Ce document décrit l'architecture du projet.
 
 ## Machines Virtuelles
 
-- **Windows 11** : 2 vCPU, 2 Go RAM, 50 Go disque.
 - **Ubuntu 24.04** : 2 vCPU, 2 Go RAM, 20 Go disque.
 - **Debian 12** : 2 vCPU, 2 Go RAM, 20 Go disque.
 - **CentOS 10** : 2 vCPU, 2 Go RAM, 20 Go disque.

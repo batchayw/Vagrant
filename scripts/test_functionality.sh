@@ -3,10 +3,6 @@
 # Tests de fonctionnalité pour chaque VM
 echo "Running functionality tests..."
 
-# Tests pour Windows 11
-echo "Testing Windows 11..."
-vagrant ssh windows_11 -c "echo 'Running tests on Windows 11...'"
-
 # Tests pour Ubuntu 24.04
 echo "Testing Ubuntu 24.04..."
 vagrant ssh ubuntu_2404 -c "echo 'Running tests on Ubuntu 24.04...'"

@@ -1,0 +1,6 @@
+# Configuration d'Elasticsearch (template ERB)
+cluster.name: <%= @cluster_name %>
+node.name: <%= @node_name %>
+network.host: <%= @network_host %>
+discovery.seed_hosts: ["<%= @discovery_seed_hosts %>"]
+cluster.initial_master_nodes: ["<%= @initial_master_nodes %>"]

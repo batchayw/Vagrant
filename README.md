@@ -1,6 +1,6 @@
 # Vagrant Project
 
-Ce projet vise à automatiser la création de 4 machines virtuelles (Windows 11, Ubuntu 24.04, Debian 12, CentOS 10) en utilisant Vagrant et KVM/QEMU. Il inclut également une pipeline CI/CD pour le déploiement, la gestion des logs, le monitoring et les notifications.
+Ce projet vise à automatiser la création de 3 machines virtuelles (Ubuntu 24.04, Debian 12, CentOS 10) en utilisant Vagrant et KVM/QEMU. Il inclut également une pipeline CI/CD pour le déploiement, la gestion des logs, le monitoring et les notifications.
 
 ## Structure du Projet
 

@@ -1,0 +1,12 @@
+# Configuration de Logstash (template ERB)
+input {
+  beats {
+    port => 5044
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["<%= @elasticsearch_host %>:<%= @elasticsearch_port %>"]
+  }
+}
