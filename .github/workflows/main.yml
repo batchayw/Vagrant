@@ -70,10 +70,14 @@ jobs:
           sudo systemctl start rsyslog
           sudo systemctl enable rsyslog
 
+      - name: Install Fluentd (td-agent)
+        run: |
+          curl -L https://toolbelt.treasuredata.com/sh/install-ubuntu-focal-td-agent4.sh | sh
+          sudo systemctl enable td-agent
+
       - name: Start Fluentd Log Manager
         run: |
           sudo systemctl start td-agent
-          sudo systemctl enable td-agent
 
       - name: Start ELK Stack
         run: |
