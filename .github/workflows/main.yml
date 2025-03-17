@@ -62,8 +62,8 @@ jobs:
         run: |
           chmod +x tests/functionality/test_cases/*.sh
           chmod +x tests/security/security_checks/*.sh
-          ./tests/functionality/test_cases/*.sh
-          ./tests/security/security_checks/*.sh
+          sudo ./tests/functionality/test_cases/*.sh
+          sudo ./tests/security/security_checks/*.sh
 
       - name: Start Syslog Log Manager
         run: |
