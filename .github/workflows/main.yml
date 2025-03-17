@@ -49,14 +49,8 @@ jobs:
       - name: Install Vagrant Libvirt Plugin
         run: vagrant plugin install vagrant-libvirt
 
-      - name: Make scripts executable
-        run: chmod +x scripts/*.sh
-
       - name: Provision VMs
         run: vagrant up
-
-      - name: Make scripts executable
-        run: chmod +x scripts/*.sh
 
       - name: Run Functionality Tests
         run: ./scripts/test_functionality.sh
@@ -64,18 +58,40 @@ jobs:
       - name: Run Security Tests
         run: ./scripts/test_security.sh
 
-      - name: Run Fluteng log_manager
-        run: 
+      - name: Run Global Tests
+        run: |
+          ./tests/functionality/test_cases/*.sh
+          ./tests/security/security_checks/*.sh
 
-      - name: Run Syslog log_manager
-        run:  
+      - name: Start Syslog Log Manager
+        run: |
+          sudo systemctl start rsyslog
+          sudo systemctl enable rsyslog
 
-      - name: Run ELK log_manager
-        run:
+      - name: Start Fluentd Log Manager
+        run: |
+          sudo systemctl start td-agent
+          sudo systemctl enable td-agent
 
-      - name: Make scripts executable
-        run: chmod +x ci-cd/notifications/*.sh
-      
+      - name: Start ELK Stack
+        run: |
+          sudo systemctl start elasticsearch
+          sudo systemctl start logstash
+          sudo systemctl start kibana
+          sudo systemctl enable elasticsearch
+          sudo systemctl enable logstash
+          sudo systemctl enable kibana
+
+      - name: Start Prometheus
+        run: |
+          sudo systemctl start prometheus
+          sudo systemctl enable prometheus
+
+      - name: Start Grafana
+        run: |
+          sudo systemctl start grafana-server
+          sudo systemctl enable grafana-server
+
       - name: Send Notification
         run: ./ci-cd/notifications/gmail_notification.sh
         env:
