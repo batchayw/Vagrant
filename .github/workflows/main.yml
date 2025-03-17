@@ -70,14 +70,29 @@ jobs:
           sudo systemctl start rsyslog
           sudo systemctl enable rsyslog
 
-      - name: Install Fluentd (td-agent)
+      - name: Install Fluentd via RubyGems
         run: |
-          curl -L https://toolbelt.treasuredata.com/sh/install-ubuntu-focal-td-agent4.sh | sh
-          sudo systemctl enable td-agent
+          sudo apt-get update
+          sudo apt-get install -y ruby ruby-dev build-essential
+          sudo gem install fluentd --no-doc
+          sudo mkdir -p /etc/fluent
+          sudo cp logs/fluentd/fluent.conf /etc/fluent/fluent.conf
+          sudo tee /etc/systemd/system/fluentd.service <<EOF
+          [Unit]
+          Description=Fluentd
+          After=network.target
 
-      - name: Start Fluentd Log Manager
-        run: |
-          sudo systemctl start td-agent
+          [Service]
+          User=root
+          ExecStart=/usr/local/bin/fluentd --config /etc/fluent/fluent.conf
+          Restart=always
+
+          [Install]
+          WantedBy=multi-user.target
+          EOF
+          sudo systemctl daemon-reload
+          sudo systemctl start fluentd
+          sudo systemctl enable fluentd
 
       - name: Start ELK Stack
         run: |
