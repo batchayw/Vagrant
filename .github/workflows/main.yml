@@ -60,6 +60,8 @@ jobs:
 
       - name: Run Global Tests
         run: |
+          chmod +x tests/functionality/test_cases/*.sh
+          chmod +x tests/security/security_checks/*.sh
           ./tests/functionality/test_cases/*.sh
           ./tests/security/security_checks/*.sh
 
